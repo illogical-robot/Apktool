@@ -4,17 +4,6 @@ mavenPublishing {
     publishToMavenCentral()
     signAllPublications()
 
-    repositories {
-        maven {
-            name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/illogical-robot/Apktool")
-            credentials {
-                username = findProperty("gpr.user") ?: System.getenv("GITHUB_ACTOR") ?: ""
-                password = findProperty("gpr.token") ?: System.getenv("GITHUB_TOKEN") ?: ""
-            }
-        }
-    }
-
     coordinates("org.apktool", project.name, project.apktoolVersion)
 
     pom {
@@ -44,6 +33,19 @@ mavenPublishing {
             connection = "scm:git:git://github.com/iBotPeaches/Apktool.git"
             developerConnection = "scm:git:git@github.com:iBotPeaches/Apktool.git"
             url = "https://github.com/iBotPeaches/Apktool"
+        }
+    }
+}
+
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/illogical-robot/Apktool")
+            credentials {
+                username = findProperty("gpr.user") ?: System.getenv("GITHUB_ACTOR") ?: ""
+                password = findProperty("gpr.token") ?: System.getenv("GITHUB_TOKEN") ?: ""
+            }
         }
     }
 }
